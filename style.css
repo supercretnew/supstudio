@@ -10,7 +10,7 @@ body {
 
     background-color: var(--bg-color);
     background-image: radial-gradient(circle at 50% 0%, #1a3a5e 0%, var(--bg-color) 60%),
-                      url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMwNDBhMTkiIGQ9Ik0zMiA2NEwwIDMyIDMyIDAgNjQgMzIgMzIgNjR6TTMxLjkgMjkuOUw1LjggNTUuOSA1LjggOC4xIDMxLjkgMjkuOXoiLz48L2c+PC9zdmc+'); /* Добавим тонкий паттерн для глубины */
+                      url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMwNDBhMTkiIGQ9TTMyIDY0TDAgMzIgMzIgMCA2NCAzMiAzMiA2NHpNMzEuOSAyOS45TDUuOCA1NS45IDUuOCA4LjEgMzEuOSAyOS45eiIvPjwvZz48L3N2Zy4+'); /* Добавим тонкий паттерн для глубины */
     background-size: cover, 16px 16px;
     background-blend-mode: overlay;
 
@@ -65,7 +65,7 @@ header {
 
 .logo-container {
     position: relative;
-    width: 180px; /* Увеличим логотип */
+    width: 180px; 
     height: 180px;
     margin: 0 auto 30px;
     display: flex;
@@ -77,7 +77,7 @@ header {
     width: 100%;
     height: 100%;
     object-fit: contain;
-    border-radius: 35px; /* Сохраним скругление */
+    border-radius: 35px; 
     position: relative;
     z-index: 2;
     box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
@@ -88,7 +88,7 @@ header {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 200px; height: 200px; /* Увеличим свечение */
+    width: 200px; height: 200px; 
     background: radial-gradient(circle, var(--accent-color) 0%, transparent 60%);
     filter: blur(50px);
     opacity: 0.6;
@@ -130,7 +130,7 @@ h1 {
 
 /* Сетка проектов */
 main {
-    max-width: 1400px; /* Сделаем чуть шире */
+    max-width: 1400px; 
     margin: 50px auto;
     padding: 20px;
     flex-grow: 1;
@@ -150,21 +150,26 @@ h2 {
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Чуть увеличим мин. размер */
-    gap: 40px; /* Увеличим отступы */
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 40px; 
 }
 
 /* Карточка проекта (Улучшенный Glassmorphism) */
 .card {
-    @extend .glassmorphism; /* Применяем общие стили */
-    background: var(--glass-bg-light); /* Чуть светлее фон для карточек */
+    /* @extend .glassmorphism; - в чистом CSS не работает, поэтому копируем стили */
+    background: var(--glass-bg-light);
     border: 1px solid var(--glass-border-light);
-    padding: 30px; /* Увеличим паддинг */
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+    
+    border-radius: 25px; /* Основное скругление */
+    padding: 30px; 
     transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     display: flex;
     flex-direction: column;
     position: relative;
-    overflow: hidden; /* Для эффекта света */
+    overflow: hidden; 
 }
 
 .card::before { /* Эффект "мокрого" блика на карточке */
@@ -189,26 +194,15 @@ h2 {
     border-color: var(--accent-color);
 }
 
-.card-img {
-    width: 100%;
-    height: 200px; /* Увеличим высоту изображений */
-    background: linear-gradient(45deg, #132b46, #2a527a);
-    border-radius: 15px; /* Немного больше скругления */
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 35px;
-    color: rgba(255,255,255,0.3);
-    object-fit: cover;
-    border: 1px solid rgba(255,255,255,0.1);
-}
+/* В этом блоке мы убрали стили для .card-img */
+
 
 .card h3 {
     margin-top: 0;
     color: var(--accent-color);
     font-size: 1.8rem;
     text-shadow: 0 0 5px rgba(0, 212, 255, 0.4);
+    margin-bottom: 10px; /* Добавим отступ от заголовка до описания */
 }
 
 .card p {
@@ -216,7 +210,7 @@ h2 {
     font-size: 1rem;
     line-height: 1.6;
     flex-grow: 1;
-    margin-bottom: 20px;
+    margin-bottom: 25px; /* Увеличим отступ до кнопки */
 }
 
 .btn {
