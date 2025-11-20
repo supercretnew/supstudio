@@ -1,12 +1,11 @@
-/* Базовые настройки и фон */
 body {
-    --bg-color: #050b14; /* Темно-синий фон */
-    --accent-color: #00d4ff; /* Основной неоновый акцент */
-    --secondary-accent: #007acc; /* Вторичный акцент */
-    --glass-bg-light: rgba(255, 255, 255, 0.08); /* Светлая часть стекла */
-    --glass-border-light: rgba(255, 255, 255, 0.2); /* Светлая обводка стекла */
-    --glass-bg-dark: rgba(255, 255, 255, 0.03); /* Темная часть стекла */
-    --glass-border-dark: rgba(255, 255, 255, 0.1); /* Темная обводка стекла */
+    --bg-color: #050b14;
+    --accent-color: #00d4ff;
+    --secondary-accent: #007acc;
+    --glass-bg-light: rgba(255, 255, 255, 0.08);
+    --glass-border-light: rgba(255, 255, 255, 0.2);
+    --glass-bg-dark: rgba(255, 255, 255, 0.03);
+    --glass-border-dark: rgba(255, 255, 255, 0.1);
 
     background-color: var(--bg-color);
     background-image: radial-gradient(circle at 50% 0%, #1a3a5e 0%, var(--bg-color) 60%),
@@ -24,7 +23,6 @@ body {
     overflow-x: hidden;
 }
 
-/* Анимация для фона (добавляет эффект движения жидкости) */
 body::before {
     content: '';
     position: fixed;
@@ -45,7 +43,6 @@ body::before {
     100% { background-position: 0% 50%; }
 }
 
-/* Хедер и Логотип */
 header {
     text-align: center;
     padding: 60px 20px 40px;
@@ -118,7 +115,6 @@ h1 {
     opacity: 0.9;
 }
 
-/* Сетка проектов */
 main {
     max-width: 1400px; 
     margin: 50px auto;
@@ -144,7 +140,6 @@ h2 {
     gap: 40px; 
 }
 
-/* Карточка проекта (Улучшенный Glassmorphism) */
 .card {
     background: var(--glass-bg-light);
     border: 1px solid var(--glass-border-light);
@@ -161,7 +156,7 @@ h2 {
     overflow: hidden; 
 }
 
-.card::before { /* Эффект "мокрого" блика на карточке */
+.card::before {
     content: '';
     position: absolute;
     top: 0;
@@ -231,7 +226,6 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Стили для ссылок в футере */
 .footer-link {
     color: var(--accent-color); /* #00d4ff */
     text-decoration: none;
@@ -249,7 +243,6 @@ footer p {
     margin: 5px 0;
 }
 
-/* Медиа-запросы для адаптивности */
 @media (max-width: 768px) {
     h1 { font-size: 2.8rem; }
     .subtitle { font-size: 1rem; }
