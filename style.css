@@ -1,143 +1,270 @@
-/* Базовые настройки и темная тема */
+/* Базовые настройки и фон */
 body {
-    background-color: #050b14; /* Очень темный синий */
-    background-image: radial-gradient(circle at 50% 0%, #1a3a5e 0%, #050b14 60%);
+    --bg-color: #050b14; /* Темно-синий фон */
+    --accent-color: #00d4ff; /* Основной неоновый акцент */
+    --secondary-accent: #007acc; /* Вторичный акцент */
+    --glass-bg-light: rgba(255, 255, 255, 0.08); /* Светлая часть стекла */
+    --glass-border-light: rgba(255, 255, 255, 0.2); /* Светлая обводка стекла */
+    --glass-bg-dark: rgba(255, 255, 255, 0.03); /* Темная часть стекла */
+    --glass-border-dark: rgba(255, 255, 255, 0.1); /* Темная обводка стекла */
+
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% 0%, #1a3a5e 0%, var(--bg-color) 60%),
+                      url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMwNDBhMTkiIGQ9Ik0zMiA2NEwwIDMyIDMyIDAgNjQgMzIgMzIgNjR6TTMxLjkgMjkuOUw1LjggNTUuOSA1LjggOC4xIDMxLjkgMjkuOXoiLz48L2c+PC9zdmc+'); /* Добавим тонкий паттерн для глубины */
+    background-size: cover, 16px 16px;
+    background-blend-mode: overlay;
+
     color: #fff;
     font-family: 'Montserrat', sans-serif;
     margin: 0;
     padding: 0;
     min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* Предотвращаем горизонтальную прокрутку */
+}
+
+/* Анимация для фона (добавляет эффект движения жидкости) */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, rgba(0,212,255,0.1) 0%, rgba(0,122,204,0.1) 50%, rgba(5,11,20,0.1) 100%);
+    background-size: 200% 200%;
+    animation: liquidBackground 20s ease infinite;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+@keyframes liquidBackground {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Общие эффекты для Glassmorphism */
+.glassmorphism {
+    background: var(--glass-bg-dark);
+    border: 1px solid var(--glass-border-dark);
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border-radius: 25px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Хедер и Логотип */
 header {
     text-align: center;
-    padding: 40px 20px;
+    padding: 60px 20px 40px;
+    position: relative;
+    z-index: 10;
 }
 
 .logo-container {
     position: relative;
-    width: 150px;
-    margin: 0 auto 20px;
+    width: 180px; /* Увеличим логотип */
+    height: 180px;
+    margin: 0 auto 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .logo {
     width: 100%;
-    border-radius: 30px; /* Немного скруглим, как каплю */
+    height: 100%;
+    object-fit: contain;
+    border-radius: 35px; /* Сохраним скругление */
     position: relative;
     z-index: 2;
-    box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+    box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2);
+    animation: pulseGlow 3s infinite alternate ease-in-out;
 }
 
 .glow {
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 160px; height: 160px;
-    background: rgba(0, 212, 255, 0.2);
-    filter: blur(40px);
+    width: 200px; height: 200px; /* Увеличим свечение */
+    background: radial-gradient(circle, var(--accent-color) 0%, transparent 60%);
+    filter: blur(50px);
+    opacity: 0.6;
     z-index: 1;
     border-radius: 50%;
+    animation: neonGlow 2s infinite alternate ease-in-out;
+}
+
+@keyframes neonGlow {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    100% { transform: translate(-50%, -55%) scale(1.05); opacity: 0.7; }
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5), inset 0 0 15px rgba(255, 255, 255, 0.2); }
+    100% { box-shadow: 0 0 45px rgba(0, 212, 255, 0.7), inset 0 0 20px rgba(255, 255, 255, 0.3); }
 }
 
 h1 {
-    font-size: 3rem;
-    margin: 0;
-    color: #e0f7ff;
-    text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    font-size: 3.8rem;
+    margin: 15px 0 5px;
+    color: var(--accent-color);
+    text-shadow: 0 0 15px rgba(0, 212, 255, 0.8), 0 0 25px rgba(0, 212, 255, 0.5);
+    letter-spacing: 2px;
+    animation: neonText 1.5s infinite alternate;
+}
+
+@keyframes neonText {
+    0% { text-shadow: 0 0 10px rgba(0, 212, 255, 0.7), 0 0 20px rgba(0, 212, 255, 0.4); }
+    100% { text-shadow: 0 0 15px rgba(0, 212, 255, 0.9), 0 0 25px rgba(0, 212, 255, 0.6); }
 }
 
 .subtitle {
-    color: #8ab4ce;
-    font-size: 1.1rem;
+    color: #a7d9f7;
+    font-size: 1.3rem;
+    font-style: italic;
+    opacity: 0.9;
 }
 
 /* Сетка проектов */
 main {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1400px; /* Сделаем чуть шире */
+    margin: 50px auto;
     padding: 20px;
+    flex-grow: 1;
+    position: relative;
+    z-index: 5;
 }
 
 h2 {
     text-align: center;
-    margin-bottom: 40px;
-    color: #00d4ff;
+    margin-bottom: 50px;
+    color: var(--accent-color);
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    font-size: 2.5rem;
+    text-shadow: 0 0 10px rgba(0, 212, 255, 0.6);
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Чуть увеличим мин. размер */
+    gap: 40px; /* Увеличим отступы */
 }
 
-/* Карточка проекта (Glassmorphism) */
+/* Карточка проекта (Улучшенный Glassmorphism) */
 .card {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 20px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    @extend .glassmorphism; /* Применяем общие стили */
+    background: var(--glass-bg-light); /* Чуть светлее фон для карточек */
+    border: 1px solid var(--glass-border-light);
+    padding: 30px; /* Увеличим паддинг */
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     display: flex;
     flex-direction: column;
+    position: relative;
+    overflow: hidden; /* Для эффекта света */
+}
+
+.card::before { /* Эффект "мокрого" блика на карточке */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 70%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    transition: transform 0.6s ease;
+}
+
+.card:hover::before {
+    transform: skewX(-20deg) translateX(150%);
 }
 
 .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 212, 255, 0.15);
-    border-color: rgba(0, 212, 255, 0.3);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 15px 40px rgba(0, 212, 255, 0.3), 0 0 20px rgba(0, 212, 255, 0.1);
+    border-color: var(--accent-color);
 }
 
-/* Плейсхолдер для фото (если фото нет в данных) */
 .card-img {
     width: 100%;
-    height: 180px;
+    height: 200px; /* Увеличим высоту изображений */
     background: linear-gradient(45deg, #132b46, #2a527a);
-    border-radius: 12px;
-    margin-bottom: 15px;
+    border-radius: 15px; /* Немного больше скругления */
+    margin-bottom: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30px;
-    color: rgba(255,255,255,0.2);
+    font-size: 35px;
+    color: rgba(255,255,255,0.3);
     object-fit: cover;
+    border: 1px solid rgba(255,255,255,0.1);
 }
 
 .card h3 {
     margin-top: 0;
-    color: #fff;
+    color: var(--accent-color);
+    font-size: 1.8rem;
+    text-shadow: 0 0 5px rgba(0, 212, 255, 0.4);
 }
 
 .card p {
-    color: #aaa;
-    font-size: 0.9rem;
-    line-height: 1.5;
+    color: #c0d9ea;
+    font-size: 1rem;
+    line-height: 1.6;
     flex-grow: 1;
+    margin-bottom: 20px;
 }
 
 .btn {
     display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background: linear-gradient(90deg, #00d4ff, #007acc);
+    margin-top: auto; /* Прижимает кнопку к низу карточки */
+    padding: 12px 25px;
+    background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
     color: #fff;
     text-decoration: none;
-    border-radius: 8px;
+    border-radius: 10px;
     font-weight: bold;
     text-align: center;
-    transition: filter 0.3s;
+    transition: all 0.3s ease;
+    border: 1px solid var(--accent-color);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.4);
 }
 
 .btn:hover {
-    filter: brightness(1.2);
+    filter: brightness(1.3) saturate(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 212, 255, 0.6);
+    border-color: #fff;
 }
 
 footer {
     text-align: center;
     padding: 40px;
-    color: #555;
-    margin-top: 50px;
+    color: #6a8ba4;
+    margin-top: 60px;
+    position: relative;
+    z-index: 10;
+    font-size: 0.9rem;
+}
+
+/* Медиа-запросы для адаптивности */
+@media (max-width: 768px) {
+    h1 { font-size: 2.8rem; }
+    .subtitle { font-size: 1rem; }
+    h2 { font-size: 2rem; }
+    .grid { grid-template-columns: 1fr; }
+    .card { padding: 25px; }
+    .logo-container { width: 120px; height: 120px; }
+    .glow { width: 140px; height: 140px; }
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    .subtitle { font-size: 0.9rem; }
+    h2 { font-size: 1.8rem; }
+    .card { padding: 20px; }
 }
