@@ -1,0 +1,5 @@
+{
+name=AIHAM
+description=Бот в телеграмме со встроенной агрессивной нейросетью. Осторожно, разговаривает с матами
+link=https://t.me/supercretaibot
+}
