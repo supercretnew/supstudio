@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.getElementById('projects-grid');
     const dataFile = 'projects.txt';
 
-    // Функция для создания HTML карточки (без изображения)
+    // Функция для создания HTML карточки (БЕЗ изображения/плейсхолдера)
     function createCard(project) {
         const card = document.createElement('div');
         card.className = 'card';
