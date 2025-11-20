@@ -10,7 +10,7 @@ body {
 
     background-color: var(--bg-color);
     background-image: radial-gradient(circle at 50% 0%, #1a3a5e 0%, var(--bg-color) 60%),
-                      url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMwNDBhMTkiIGQ9TTMyIDY0TDAgMzIgMzIgMCA2NCAzMiAzMiA2NHpNMzEuOSAyOS45TDUuOCA1NS45IDUuOCA4LjEgMzEuOSAyOS45eiIvPjwvZz48L3N2Zy4+'); /* Добавим тонкий паттерн для глубины */
+                      url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjQiIGhlaWdodD0iNjQiIHZpZXdCb3g9IjAgMCA2NCA2NCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGZpbGw9IiMwNDBhMTkiIGQ9TTMyIDY0TDAgMzIgMzIgMCA2NCAzMiAzMiA2NHpNMzEuOSAyOS45TDUuOCA1NS45IDUuOCA4LjEgMzEuOSAyOS45eiIvPjwvZz48L3N2Zy4+');
     background-size: cover, 16px 16px;
     background-blend-mode: overlay;
 
@@ -21,7 +21,7 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
-    overflow-x: hidden; /* Предотвращаем горизонтальную прокрутку */
+    overflow-x: hidden;
 }
 
 /* Анимация для фона (добавляет эффект движения жидкости) */
@@ -43,16 +43,6 @@ body::before {
     0% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
     100% { background-position: 0% 50%; }
-}
-
-/* Общие эффекты для Glassmorphism */
-.glassmorphism {
-    background: var(--glass-bg-dark);
-    border: 1px solid var(--glass-border-dark);
-    backdrop-filter: blur(15px) saturate(180%);
-    -webkit-backdrop-filter: blur(15px) saturate(180%);
-    border-radius: 25px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
 }
 
 /* Хедер и Логотип */
@@ -156,14 +146,13 @@ h2 {
 
 /* Карточка проекта (Улучшенный Glassmorphism) */
 .card {
-    /* @extend .glassmorphism; - в чистом CSS не работает, поэтому копируем стили */
     background: var(--glass-bg-light);
     border: 1px solid var(--glass-border-light);
     backdrop-filter: blur(15px) saturate(180%);
     -webkit-backdrop-filter: blur(15px) saturate(180%);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
     
-    border-radius: 25px; /* Основное скругление */
+    border-radius: 25px; 
     padding: 30px; 
     transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
     display: flex;
@@ -194,15 +183,12 @@ h2 {
     border-color: var(--accent-color);
 }
 
-/* В этом блоке мы убрали стили для .card-img */
-
-
 .card h3 {
     margin-top: 0;
     color: var(--accent-color);
     font-size: 1.8rem;
     text-shadow: 0 0 5px rgba(0, 212, 255, 0.4);
-    margin-bottom: 10px; /* Добавим отступ от заголовка до описания */
+    margin-bottom: 10px; 
 }
 
 .card p {
@@ -210,12 +196,12 @@ h2 {
     font-size: 1rem;
     line-height: 1.6;
     flex-grow: 1;
-    margin-bottom: 25px; /* Увеличим отступ до кнопки */
+    margin-bottom: 25px; 
 }
 
 .btn {
     display: inline-block;
-    margin-top: auto; /* Прижимает кнопку к низу карточки */
+    margin-top: auto; 
     padding: 12px 25px;
     background: linear-gradient(90deg, var(--accent-color), var(--secondary-accent));
     color: #fff;
@@ -259,6 +245,5 @@ footer {
 @media (max-width: 480px) {
     h1 { font-size: 2rem; }
     .subtitle { font-size: 0.9rem; }
-    h2 { font-size: 1.8rem; }
     .card { padding: 20px; }
 }
